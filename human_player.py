@@ -3,9 +3,11 @@ from field import Field
 from ship import Ship
 from computer_player import ComputerPlayer
 
+
 class HumanPLayer(Player):
     # количесвто палуб: количество кораблей
-    SHIPS_NUM = {'4' : 1, '3': 2, '2': 3, '1': 4} 
+    SHIPS_NUM = {'4': 1, '3': 2, '2': 3, '1': 4}
+    NAME = "Игрок - Человек"  # нужно, чтобы проще вывести победителя в Game.move
 
     def set_ships(self):
         self.field.print_my_field()
@@ -21,7 +23,8 @@ class HumanPLayer(Player):
 
                 ship_size = int(input(f'Введите количество палуб у {i + 1}го корабля , который хотите добавить: '))
                 while str(ship_size) not in HumanPLayer.SHIPS_NUM.keys() or HumanPLayer.SHIPS_NUM[str(ship_size)] == 0:
-                    print('Вы ввели недопустимое количество палуб или такой корабль больше невозможно поставить! Попробуйте ещё раз: ')
+                    print(
+                        'Вы ввели недопустимое количество палуб или такой корабль больше невозможно поставить! Попробуйте ещё раз: ')
                     ship_size = input(f'Введите количество палуб у корабля, который хотите добавить: ')
                 if str(ship_size) in HumanPLayer.SHIPS_NUM.keys():
                     HumanPLayer.SHIPS_NUM[str(ship_size)] -= 1
@@ -41,12 +44,10 @@ class HumanPLayer(Player):
                     break
                 self.field.print_my_field()
 
-
     def move(self, opponent_field: Field):
         marked_cell = str(input('Введите номер клетки поля, куда будете стрелять: '))
         cell_int = opponent_field.set_coord(marked_cell)
         opponent_field.to_hit(cell_int)
-        
 
     def show_field(self, opponent_field: Field):
         self.field.print_my_field()
