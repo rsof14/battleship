@@ -26,7 +26,7 @@ class HumanPLayer(Player):
                 if str(ship_size) in HumanPLayer.SHIPS_NUM.keys():
                     HumanPLayer.SHIPS_NUM[str(ship_size)] -= 1
 
-                ship_direction = int(input('Укажите направление корабля: (1 - вверх, 2 - вправо, 3 - вниз, 4 - вниз)'))
+                ship_direction = int(input('Укажите направление корабля (1 - вверх, 2 - вправо, 3 - вниз, 4 - вниз): '))
                 while ship_direction not in (1, 2, 3, 4):
                     ship_direction = int(input('Вы ввели неправильное нарправление у корабля! Попробуйте ещё раз: '))
 

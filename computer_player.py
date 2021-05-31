@@ -7,16 +7,10 @@ class ComputerPlayer(Player):
         self.set_random()
     
 
-    def move(self):
+    def move(self, opponent_field: Field):
         marked_cell_x = randint(1, 10)
         marked_cell_y = randint(1,10)
-        marked_cell = [marked_cell_x, marked_cell_y]
-        if marked_cell not in self.field.hits_misses:
-            if self.HumanPlayer.field[marked_cell_x][marked_cell_y] == ' ':
-                self.HumanPlayer.field[marked_cell_x][marked_cell_y] = '.'
-            else:
-                self.HumanPlayer.field[marked_cell_x][marked_cell_y] = 'x'
-                # обратиться к кораблю ПРОТИВНИКА и изменить его hits
+        opponent_field.to_hit([marked_cell_x, marked_cell_y])
 
 
     def show_field(self, opponent_field: Field):
