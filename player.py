@@ -1,12 +1,10 @@
 from __future__ import annotations
 from abc import abstractmethod
-from math import radians
 from field import Field
 from ship import Ship
 from random import randint
 
 class Player(ABC):
-    # количество возможных кораблей: количество палуб
     SHIPS_NUM = [0, 4, 3, 2, 1] 
     field: Field
 
