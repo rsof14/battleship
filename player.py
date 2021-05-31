@@ -1,5 +1,5 @@
 from __future__ import annotations
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from field import Field
 from ship import Ship
 from random import randint
