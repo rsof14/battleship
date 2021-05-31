@@ -14,17 +14,17 @@ class HumanPLayer(Player):
         for i in range(10):
             while True:
                 print(f"""Доступное количество 
-                четырёхпалубных - {self.SHIPS_NUM['4']}, 
-                трёхпалубных - {self.SHIPS_NUM['3']}, 
-                двухпалубных - {self.SHIPS_NUM['2']},  
-                однопалубных - {self.SHIPS_NUM['1']}. """)
+                четырёхпалубных - {HumanPLayer.SHIPS_NUM['4']}, 
+                трёхпалубных - {HumanPLayer.SHIPS_NUM['3']}, 
+                двухпалубных - {HumanPLayer.SHIPS_NUM['2']},  
+                однопалубных - {HumanPLayer.SHIPS_NUM['1']}. """)
 
                 ship_size = int(input(f'Введите количество палуб у {i + 1}го корабля , который хотите добавить: '))
-                while str(ship_size) not in self.SHIPS_NUM.keys() or self.SHIPS_NUM[str(ship_size)] == 0:
+                while str(ship_size) not in HumanPLayer.SHIPS_NUM.keys() or HumanPLayer.SHIPS_NUM[str(ship_size)] == 0:
                     print('Вы ввели недопустимое количество палуб или такой корабль больше невозможно поставить! Попробуйте ещё раз: ')
                     ship_size = input(f'Введите количество палуб у корабля, который хотите добавить: ')
-                if str(ship_size) in self.SHIPS_NUM.keys():
-                    self.SHIPS_NUM[str(ship_size)] -= 1
+                if str(ship_size) in HumanPLayer.SHIPS_NUM.keys():
+                    HumanPLayer.SHIPS_NUM[str(ship_size)] -= 1
 
                 ship_direction = int(input('Укажите направление корабля: (1 - вверх, 2 - вправо, 3 - вниз, 4 - вниз)'))
                 while ship_direction not in (1, 2, 3, 4):
