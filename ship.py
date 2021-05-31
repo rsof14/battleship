@@ -6,8 +6,10 @@ class Ship:
     direction: int
     ship_len: int
     hits: list
-
-    # direstions: 1 - ↑, 2 - →, 3 - ↓, 4 - ←
+    DIRECTION_UP = 1
+    DIRECTION_RIGHT = 2
+    DIRECTION_DOWN = 3
+    DIRECTION_LEFT = 4
 
     def __init__(self, start_coord: list, direction: int, ship_len: int, hits: list = None):
         self.start_coord = start_coord
@@ -16,46 +18,44 @@ class Ship:
         self.hits = hits
 
     def check_crossing(self, field: Field):
-        if self.direction == 1:
-            for i in range(self.start_coord[0], self.start_coord[0] + self.ship_len + 1):
+        if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
+            if self.direction == self.DIRECTION_LEFT:
+                step = -1 * self.ship_len - 1
+            if self.direction == self.DIRECTION_RIGHT:
+                step = self.ship_len + 1
+            for i in range(self.start_coord[0], self.start_coord[0] + step):
                 if field.field[i][self.start_coord[1]] != ' ':
                     return True
             return False
-        if self.direction == 2:
-            for i in range(self.start_coord[1], self.start_coord[1] + self.ship_len + 1):
-                if field.field[self.start_coord[0]][i] != ' ':
-                    return True
-            return False
-        if self.direction == 3:
-            for i in range(self.start_coord[0], self.start_coord[0] - self.ship_len - 1):
-                if field.field[i][self.start_coord[1]] != ' ':
-                    return True
-            return False
-        if self.direction == 4:
-            for i in range(self.start_coord[1], self.start_coord[1] - self.ship_len - 1):
+        if self.direction == self.DIRECTION_UP or self.direction == self.DIRECTION_DOWN:
+            if self.direction == self.DIRECTION_DOWN:
+                step = -1 * self.ship_len - 1
+            if self.direction == self.DIRECTION_UP:
+                step = self.ship_len + 1
+            for i in range(self.start_coord[1], self.start_coord[1] + step):
                 if field.field[self.start_coord[0]][i] != ' ':
                     return True
             return False
 
     def check_hits(self, hit_coord: list):
-        if self.direction == 1:
-            for i in range(self.start_coord[0], self.start_coord[0] + self.ship_len + 1):
-                if [i, self.start_coord[1]] == hit_coord:
+        if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
+            if self.direction == self.DIRECTION_LEFT:
+                step = -1 * self.ship_len - 1
+            if self.direction == self.DIRECTION_RIGHT:
+                step = self.ship_len + 1
+            for i in range(self.start_coord[0], self.start_coord[0] + step):
+                if hit_coord == [i, self.start_coord[1]]:
+                    self.hits.append(hit_coord)
                     return True
             return False
-        if self.direction == 2:
-            for i in range(self.start_coord[1], self.start_coord[1] + self.ship_len + 1):
-                if [self.start_coord[0], i] == hit_coord:
-                    return True
-            return False
-        if self.direction == 3:
-            for i in range(self.start_coord[0], self.start_coord[0] - self.ship_len - 1):
-                if [i, self.start_coord[1]] == hit_coord:
-                    return True
-            return False
-        if self.direction == 4:
-            for i in range(self.start_coord[1], self.start_coord[1] - self.ship_len - 1):
-                if [self.start_coord[0], i] == hit_coord:
+        if self.direction == self.DIRECTION_UP or self.direction == self.DIRECTION_DOWN:
+            if self.direction == self.DIRECTION_DOWN:
+                step = -1 * self.ship_len - 1
+            if self.direction == self.DIRECTION_UP:
+                step = self.ship_len + 1
+            for i in range(self.start_coord[1], self.start_coord[1] + step):
+                if hit_coord == [self.start_coord[0], i]:
+                    self.hits.append(hit_coord)
                     return True
             return False
 
