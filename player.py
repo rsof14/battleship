@@ -7,7 +7,7 @@ from random import randint
 
 class Player(ABC):
     # количество возможных кораблей: количество палуб
-    SHIPS_NUM = {4: 1, 3: 2, 2: 3, 1: 4} 
+    SHIPS_NUM = [0, 4, 3, 2, 1] 
     field: Field
 
     @abstractmethod
@@ -16,7 +16,7 @@ class Player(ABC):
 
 
     @abstractmethod
-    def move():
+    def move(opponent_field: Field):
         pass
 
 
@@ -25,16 +25,20 @@ class Player(ABC):
         pass
 
 
-    def set_random():
+    def set_random(self):
         amount = 1
-        for i in range(len(self.SHIPS_NUM)):
+        for ship_size in range(len(Player.SHIPS_NUM), 0, -1):
             for j in range(amount):
-                ship_size = self.SHIPS_NUM[i + 1]
+                while True:
                 start_coord_x = randint(1,10)
                 start_coord_y = randint(1,10)
-                start_coord = [start_coord_x, start_coord_y]
-                ship_direction = radint(1, 4)
-                ship = Ship(start_coord, ship_direction, ship_size, [])
-                self.field.add_ship(ship)
+                ship_direction = randint(1,4)
+                ship = Ship([start_coord_x, start_coord_y], ship_direction, ship_size, [])
+                try:
+                    self.field.add_ship(ship)
+                except ValueError:
+                    pass
+                else: 
+                    break
             amount += 1
 
