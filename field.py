@@ -41,8 +41,12 @@ class Field:
 
     def set_coord(self, coord: str):
         words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
+        if coord in words is False:
+            raise ValueError("Несоответствующее значение")
         coord0 = words.index(coord[0])
         coord2 = coord[1:len(coord)]
+        if '0' <= coord2 <= '10' is False:
+            raise ValueError("Несоответствующее значение")
         coord1 = int(coord2)
         return [coord0, coord1]
 
