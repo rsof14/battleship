@@ -11,11 +11,11 @@ class Ship:
     DIRECTION_DOWN = 3
     DIRECTION_LEFT = 4
 
-    def __init__(self, start_coord: list, direction: int, ship_len: int, hits: list = None):
+    def __init__(self, start_coord: list, direction: int, ship_len: int):
         self.start_coord = start_coord
         self.direction = direction
         self.ship_len = ship_len
-        self.hits = hits
+        self.hits = []
 
     def check_crossing(self, field: Field):
         if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
