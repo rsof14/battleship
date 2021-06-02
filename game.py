@@ -19,6 +19,7 @@ class Game:
             self.players[0].set_ships()
         else:
             self.players[0].set_random()
+        self.players[0].field.print_my_field()
         self.players[1].set_random()
 
     def move(self):

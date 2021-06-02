@@ -27,6 +27,8 @@ class Ship:
                 step = self.ship_len
                 dir = 1
             for i in range(self.start_coord[0], self.start_coord[0] + step, dir):
+                if abs(i) > 10 or abs(self.start_coord[1]) > 10 or i < 0:
+                    raise ValueError("Корабль выходит за пределы поля")
                 if field.field[i][self.start_coord[1]] != ' ':
                     return True
             return False
@@ -38,6 +40,8 @@ class Ship:
                 step = self.ship_len
                 dir = 1
             for i in range(self.start_coord[1], self.start_coord[1] + step, dir):
+                if abs(i) > 10 or abs(self.start_coord[1]) > 10 or i < 0:
+                    raise ValueError("Корабль выходит за пределы поля")
                 if field.field[self.start_coord[0]][i] != ' ':
                     return True
             return False
