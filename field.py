@@ -43,7 +43,7 @@ class Field:
 
     def set_coord(self, coord: str):
         words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
-        if coord not in words:
+        if coord[0] not in words:
             raise ValueError("Несоответствующее значение")
         coord0 = words.index(coord[0])
         coord1 = int(coord[1:len(coord)])
