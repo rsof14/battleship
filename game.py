@@ -29,8 +29,8 @@ class Game:
             print("Случайным образом выбрано: компьютер ходит первым")
             turn = -1
         while len(self.players[0].field.ships) != 0 and len(self.players[1].field.ships) != 0:
-            self.players[turn % 2].move()
-            self.players[turn % 2].show_field()
+            self.players[turn % 2].move(self.players[(turn - 1) % 2].field)
+            self.players[turn % 2].show_field(self.players[(turn - 1) % 2].field)
             turn += 1
             if len(self.players[turn % 2].field.ships) == 0:
                 print(f"Победил {self.players[(turn - 1) % 2].NAME}")
