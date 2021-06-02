@@ -2,9 +2,9 @@ from player import Player
 from field import Field
 from ship import Ship
 
+
 class HumanPLayer(Player):
-    # количество палуб: количество кораблей
-    SHIPS_NUM = {'4' : 1, '3': 2, '2': 3, '1': 4}
+    SHIPS_NUM = {'4' : 1, '3': 2, '2': 3, '1': 4}    # количество палуб: количество кораблей
     NAME = "Игрок - Человек"  # нужно, чтобы проще вывести победителя в Game.move
 
     def set_ships(self):
@@ -19,7 +19,8 @@ class HumanPLayer(Player):
 
                 ship_size = int(input(f'Введите количество палуб у {i + 1}го корабля , который хотите добавить: '))
                 while str(ship_size) not in HumanPLayer.SHIPS_NUM.keys() or HumanPLayer.SHIPS_NUM[str(ship_size)] == 0:
-                    print('Вы ввели недопустимое количество палуб или такой корабль больше невозможно поставить! Попробуйте ещё раз.')
+                    print(
+                        'Вы ввели недопустимое количество палуб или такой корабль больше невозможно поставить! Попробуйте ещё раз.')
                     ship_size = input(f'Введите количество палуб у корабля, который хотите добавить: ')
                 if str(ship_size) in HumanPLayer.SHIPS_NUM.keys():
                     HumanPLayer.SHIPS_NUM[str(ship_size)] -= 1

@@ -5,7 +5,8 @@ from ship import Ship
 from random import randint
 
 class Player(ABC):
-    SHIPS_NUM = [0, 4, 3, 2, 1] 
+    SHIPS_NUM = [0, 4, 3, 2, 1]
+    NAME: str # нужно, чтобы проще вывести победителя в Game.move
     field: Field
 
     @abstractmethod
