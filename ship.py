@@ -1,4 +1,5 @@
-from field import Field
+from __future__ import annotations
+import field as f
 
 
 class Ship:
@@ -17,11 +18,11 @@ class Ship:
         self.ship_len = ship_len
         self.hits = []
 
-    def check_crossing(self, field: Field):
+    def check_crossing(self, field: f.Field):
         if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
             if self.direction == self.DIRECTION_LEFT:
                 step = -1 * self.ship_len - 1
-            if self.direction == self.DIRECTION_RIGHT:
+            else:
                 step = self.ship_len + 1
             for i in range(self.start_coord[0], self.start_coord[0] + step):
                 if field.field[i][self.start_coord[1]] != ' ':
@@ -30,7 +31,7 @@ class Ship:
         if self.direction == self.DIRECTION_UP or self.direction == self.DIRECTION_DOWN:
             if self.direction == self.DIRECTION_DOWN:
                 step = -1 * self.ship_len - 1
-            if self.direction == self.DIRECTION_UP:
+            else:
                 step = self.ship_len + 1
             for i in range(self.start_coord[1], self.start_coord[1] + step):
                 if field.field[self.start_coord[0]][i] != ' ':
@@ -41,7 +42,7 @@ class Ship:
         if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
             if self.direction == self.DIRECTION_LEFT:
                 step = -1 * self.ship_len - 1
-            if self.direction == self.DIRECTION_RIGHT:
+            else:
                 step = self.ship_len + 1
             for i in range(self.start_coord[0], self.start_coord[0] + step):
                 if hit_coord == [i, self.start_coord[1]]:
@@ -51,7 +52,7 @@ class Ship:
         if self.direction == self.DIRECTION_UP or self.direction == self.DIRECTION_DOWN:
             if self.direction == self.DIRECTION_DOWN:
                 step = -1 * self.ship_len - 1
-            if self.direction == self.DIRECTION_UP:
+            else:
                 step = self.ship_len + 1
             for i in range(self.start_coord[1], self.start_coord[1] + step):
                 if hit_coord == [self.start_coord[0], i]:
