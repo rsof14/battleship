@@ -26,7 +26,7 @@ class HumanPLayer(Player):
                 if str(ship_size) in HumanPLayer.SHIPS_NUM.keys():
                     HumanPLayer.SHIPS_NUM[str(ship_size)] -= 1
 
-                ship_direction = int(input('Укажите направление корабля (1 - вверх, 2 - вправо, 3 - вниз, 4 - вниз): '))
+                ship_direction = int(input('Укажите направление корабля (1 - вверх, 2 - вправо, 3 - вниз, 4 - влево): '))
                 while ship_direction not in (1, 2, 3, 4):
                     ship_direction = int(input('Вы ввели неправильное нарправление у корабля! Попробуйте ещё раз: '))
 
@@ -35,11 +35,11 @@ class HumanPLayer(Player):
                 ship = Ship(start_coord_int, ship_direction, ship_size)
                 try:
                     self.field.add_ship(ship)
+                    self.field.print_my_field()
                 except ValueError:
                     pass
                 else:
                     break
-                self.field.print_my_field()
 
     def move(self, opponent_field: Field):
         marked_cell = str(input('Введите номер клетки поля, куда будете стрелять: '))
