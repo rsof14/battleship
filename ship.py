@@ -21,19 +21,23 @@ class Ship:
     def check_crossing(self, field: f.Field):
         if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
             if self.direction == self.DIRECTION_LEFT:
-                step = -1 * self.ship_len - 1
+                step = -self.ship_len
+                dir = -1
             else:
-                step = self.ship_len + 1
-            for i in range(self.start_coord[0], self.start_coord[0] + step):
+                step = self.ship_len
+                dir = 1
+            for i in range(self.start_coord[0], self.start_coord[0] + step, dir):
                 if field.field[i][self.start_coord[1]] != ' ':
                     return True
             return False
         if self.direction == self.DIRECTION_UP or self.direction == self.DIRECTION_DOWN:
             if self.direction == self.DIRECTION_DOWN:
-                step = -1 * self.ship_len - 1
+                step = -self.ship_len
+                dir = -1
             else:
-                step = self.ship_len + 1
-            for i in range(self.start_coord[1], self.start_coord[1] + step):
+                step = self.ship_len
+                dir = 1
+            for i in range(self.start_coord[1], self.start_coord[1] + step, dir):
                 if field.field[self.start_coord[0]][i] != ' ':
                     return True
             return False
@@ -41,20 +45,24 @@ class Ship:
     def check_hits(self, hit_coord: list):
         if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
             if self.direction == self.DIRECTION_LEFT:
-                step = -1 * self.ship_len - 1
+                step = -self.ship_len
+                dir = -1
             else:
-                step = self.ship_len + 1
-            for i in range(self.start_coord[0], self.start_coord[0] + step):
+                step = self.ship_len
+                dir = 1
+            for i in range(self.start_coord[0], self.start_coord[0] + step, dir):
                 if hit_coord == [i, self.start_coord[1]]:
                     self.hits.append(hit_coord)
                     return True
             return False
         if self.direction == self.DIRECTION_UP or self.direction == self.DIRECTION_DOWN:
             if self.direction == self.DIRECTION_DOWN:
-                step = -1 * self.ship_len - 1
+                step = -self.ship_len
+                dir = -1
             else:
-                step = self.ship_len + 1
-            for i in range(self.start_coord[1], self.start_coord[1] + step):
+                step = self.ship_len
+                dir = 1
+            for i in range(self.start_coord[1], self.start_coord[1] + step, dir):
                 if hit_coord == [self.start_coord[0], i]:
                     self.hits.append(hit_coord)
                     return True

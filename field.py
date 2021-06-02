@@ -30,34 +30,35 @@ class Field:
         for i in range(-1, 10):
             for j in range(-1, 10):
                 if i == -1 and j == -1:
-                    print(' ')
+                    print(' ', end='')
                 if i == -1 and j != -1:
-                    print(words[j])
+                    print(words[j], end='')
                 if i != -1 and j == -1:
-                    print(i + 1)
+                    print(i + 1, end='')
                 if i != -1 and j != -1:
                     if self.field[i][j] != '□':
                         print(self.field[i][j])
                     else:
                         print(' ')
+            print()
 
     def set_coord(self, coord: str):
         words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
-        if coord not in words:
+        if coord[0] not in words:
             raise ValueError("Несоответствующее значение")
         coord0 = words.index(coord[0])
         coord1 = int(coord[1:len(coord)])
-        if not 0 <= coord1 <= 10:
+        if not 1 <= coord1 <= 10:
             raise ValueError("Несоответствующее значение")
-        return [coord0, coord1]
+        return [coord0, coord1 - 1]
 
     def add_ship(self, ship: sh.Ship):
         if not ship.check_crossing(self):
             if ship.direction == ship.DIRECTION_LEFT or ship.direction == ship.DIRECTION_RIGHT:
                 if ship.direction == ship.DIRECTION_LEFT:
-                    step = -1 * ship.ship_len - 1
+                    step = -1 * ship.ship_len
                 else:
-                    step = ship.ship_len + 1
+                    step = ship.ship_len
                 for i in range(ship.start_coord[0], ship.start_coord[0] + step):
                     if abs(i) > 10 or abs(ship.start_coord[1]) > 10:
                         raise ValueError("Корабль выходит за пределы поля")

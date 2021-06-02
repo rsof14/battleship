@@ -29,8 +29,8 @@ class Player(ABC):
         for ship_size in range(len(Player.SHIPS_NUM) - 1, 0, -1):
             for j in range(Player.SHIPS_NUM[ship_size]):
                 while True:
-                    start_coord_x = randint(1, 10)
-                    start_coord_y = randint(1, 10) 
+                    start_coord_x = randint(0, 9)
+                    start_coord_y = randint(0, 9)
                     ship_direction = randint(1, 4)
                     ship = Ship([start_coord_x, start_coord_y], ship_direction, ship_size)
                     try:
