@@ -1,3 +1,4 @@
+from __future__ import annotations
 from random import randint
 from field import Field
 from ship import Ship
@@ -10,7 +11,7 @@ class Game:
     players: list[Player]
 
     def __init__(self):
-        self.players = [HumanPLayer, ComputerPlayer]
+        self.players = [HumanPLayer(), ComputerPlayer()]
 
     def set_ships(self):
         if int(input('нажмите 1, чтобы расставить корабли самостоятельно, нажмите 2, '
@@ -40,6 +41,6 @@ class Game:
 if __name__ == "__main__":
     print(
         "Перед вами игра Морской бой с компьютером")
-    game = Game
+    game = Game()
     game.set_ships()
     game.move()
