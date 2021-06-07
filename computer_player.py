@@ -10,8 +10,8 @@ class ComputerPlayer(Player):
         self.set_random()
 
     def move(self, opponent_field: Field):
-        marked_cell_x = randint(1, 10)
-        marked_cell_y = randint(1, 10)
+        marked_cell_x = randint(0, 9)
+        marked_cell_y = randint(0, 9)
         opponent_field.to_hit([marked_cell_x, marked_cell_y])
 
     def show_field(self, opponent_field: Field):

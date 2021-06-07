@@ -35,7 +35,7 @@ class Player(ABC):
                     ship = Ship([start_coord_x, start_coord_y], ship_direction, ship_size)
                     try:
                         self.field.add_ship(ship)
-                    except ValueError:
-                        pass
+                    except ValueError as e:
+                        print(e)
                     else:
                         break

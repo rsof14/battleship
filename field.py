@@ -9,7 +9,7 @@ class Field:
     def __init__(self):
         self.ships = []
         self.hits_misses = []
-        self.field = [[' '] * 10] * 10
+        self.field = [[' ' for i in range(10)] for i in range(10)]
 
     def print_my_field(self):
         words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
@@ -37,9 +37,9 @@ class Field:
                     print(i + 1, end='')
                 if i != -1 and j != -1:
                     if self.field[i][j] != '□':
-                        print(self.field[i][j])
+                        print(self.field[i][j], end='')
                     else:
-                        print(' ')
+                        print(' ', end='')
             print()
 
     def set_coord(self, coord: str):
@@ -61,7 +61,7 @@ class Field:
                 step = ship.ship_len
                 dir = 1
             for i in range(ship.start_coord[0], ship.start_coord[0] + step, dir):
-                if abs(i) > 10 or abs(ship.start_coord[1]) > 10:
+                if abs(i) >= 10 or abs(ship.start_coord[1]) >= 10:
                     raise ValueError("Корабль выходит за пределы поля")
         if ship.direction == ship.DIRECTION_UP or ship.direction == ship.DIRECTION_DOWN:
             if ship.direction == ship.DIRECTION_DOWN:
@@ -71,7 +71,7 @@ class Field:
                 step = ship.ship_len
                 dir = 1
             for i in range(ship.start_coord[1], ship.start_coord[1] + step, dir):
-                if abs(i) > 10 or abs(ship.start_coord[1]) > 10:
+                if abs(i) >= 10 or abs(ship.start_coord[1]) >= 10:
                     raise ValueError("Корабль выходит за пределы поля")
         if not ship.check_crossing(self):
             if ship.direction == ship.DIRECTION_LEFT or ship.direction == ship.DIRECTION_RIGHT:
@@ -82,7 +82,7 @@ class Field:
                     step = ship.ship_len
                     dir = 1
                 for i in range(ship.start_coord[0], ship.start_coord[0] + step, dir):
-                    if abs(i) > 10 or abs(ship.start_coord[1]) > 10:
+                    if abs(i) >= 10 or abs(ship.start_coord[1]) >= 10:
                         raise ValueError("Корабль выходит за пределы поля")
                     self.field[i][ship.start_coord[1]] = '□'
             if ship.direction == ship.DIRECTION_UP or ship.direction == ship.DIRECTION_DOWN:
@@ -93,7 +93,7 @@ class Field:
                     step = ship.ship_len
                     dir = 1
                 for i in range(ship.start_coord[1], ship.start_coord[1] + step, dir):
-                    if abs(i) > 10 or abs(ship.start_coord[1]) > 10:
+                    if abs(i) >= 10 or abs(ship.start_coord[1]) >= 10:
                         raise ValueError("Корабль выходит за пределы поля")
                     self.field[ship.start_coord[0]][i] = '□'
             self.ships.append(ship)
@@ -103,9 +103,9 @@ class Field:
     def to_hit(self, coord: list):
         for ship in self.ships:
             if not ship.check_hits(coord):
-                self.field[coord[0]][coord[1]] = '.'
+                self.field[coord[1]][coord[0]] = '.'
             else:
-                self.field[coord[0]][coord[1]] = 'o'
+                self.field[coord[1]][coord[0]] = 'o'
             if ship.is_die():
                 if ship.direction == ship.DIRECTION_LEFT or ship.direction == ship.DIRECTION_RIGHT:
                     if ship.direction == ship.DIRECTION_LEFT:
@@ -117,8 +117,8 @@ class Field:
                     for i in range(ship.start_coord[0], ship.start_coord[0] + step, dir):
                         for k in range(i - 1, i + 2):
                             for j in range(ship.start_coord[0] - 1, ship.start_coord[0] + 2):
-                                self.field[k][j] = '.'
-                        self.field[i][ship.start_coord[1]] = 'x'
+                                self.field[j][k] = '.'
+                        self.field[ship.start_coord[1]][i] = 'x'
                 if ship.direction == ship.DIRECTION_UP or ship.direction == ship.DIRECTION_DOWN:
                     if ship.direction == ship.DIRECTION_DOWN:
                         step = -ship.ship_len
@@ -129,7 +129,7 @@ class Field:
                     for i in range(ship.start_coord[1], ship.start_coord[1] + step, dir):
                         for k in range(ship.start_coord[1] - 1, ship.start_coord[1] + 2):
                             for j in range(i - 1, i + 2):
-                                self.field[k][j] = '.'
-                        self.field[0][i] = 'x'
+                                self.field[j][k] = '.'
+                        self.field[i][ship.start_coord[0]] = 'x'
                 self.ships.remove(ship)
                 break
