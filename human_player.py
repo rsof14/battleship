@@ -42,10 +42,13 @@ class HumanPLayer(Player):
                     break
 
     def move(self, opponent_field: Field):
+        # Аналогично с computer_player переделаю под while, чтоб была исключительная ситуация, если такой хит уже был
         marked_cell = str(input('Введите номер клетки поля, куда будете стрелять: '))
         cell_int = opponent_field.set_coord(marked_cell)
         opponent_field.to_hit(cell_int)
 
     def show_field(self, opponent_field: Field):
+        print('Ваше поле: ')
         self.field.print_my_field()
+        print('Поле противника:')
         opponent_field.print_opponent_field()

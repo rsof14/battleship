@@ -10,9 +10,14 @@ class ComputerPlayer(Player):
         self.set_random()
 
     def move(self, opponent_field: Field):
+        # Я переделяю под while, просто пока ещё мозг тупит + времени нет
+        already_hit = []
         marked_cell_x = randint(0, 9)
         marked_cell_y = randint(0, 9)
-        opponent_field.to_hit([marked_cell_x, marked_cell_y])
+        point = str(marked_cell_x) + str(marked_cell_y)
+        if point not in already_hit:
+            opponent_field.to_hit([marked_cell_x, marked_cell_y])
+            already_hit.append(str(str(marked_cell_x) + str(marked_cell_y)))
 
     def show_field(self, opponent_field: Field):
         pass
