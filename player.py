@@ -29,15 +29,14 @@ class Player(ABC):
         pass
 
     """
-    Этот метод случайным образом производит расстановку кораблей.
+    Этот метод случайным образом производит расстановку кораблей на поле.
     Если добавить корабль в поле можно, исключительных ситуаций не возникает.
-    Иначе ValueError.
+    Иначе возникает ValueError.
     """
     def set_random(self):
         for ship_size in range(len(Player.SHIPS_NUM) - 1, 0, -1):
             for j in range(Player.SHIPS_NUM[ship_size]):
                 while True:
-                    # row, col = self.generate_point()
                     row = randint(0, 9)
                     col = randint(0, 9)
                     ship_direction = randint(1, 4)
