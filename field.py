@@ -10,11 +10,12 @@ class Field:
 
     def __init__(self):
         self.ships = []
-        self.hits_misses = []
-        self.field = [[' ' for i in range(10)] for i in range(10)]
+        self.hits_misses = []  # ? как хранить промахи, чтобы воссоздать их при печати и хранить
+        self.field = [[' ' for i in range(10)] for i in range(10)]  # нужно ли это поле
 
     def print_my_field(self):
         # метод выводит поле игрока-человека
+        # вынести принты в отдельный класс
         words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
         for i in range(-1, 10):
             for j in range(-1, 10):
@@ -122,7 +123,7 @@ class Field:
             if ship.check_hits(coord):
                 self.field[coord[1]][coord[0]] = 'o'
                 flag = True
-            if ship.is_die():
+            if ship.is_died():
                 if ship.direction == ship.DIRECTION_LEFT or ship.direction == ship.DIRECTION_RIGHT:
                     if ship.direction == ship.DIRECTION_LEFT:
                         step = -ship.ship_len
