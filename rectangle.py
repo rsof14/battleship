@@ -38,3 +38,6 @@ class Rectangle:
         b_y1 = other_ship.small_rectangle[3]
         return (b_x < a_x < b_x1 or a_x < b_x < a_x1) and (b_y < a_y < b_y1 or a_y < b_y < a_y1)
 
+    def hit(self, hit_coord: list):
+        return self.small_rectangle()[0] <= hit_coord[0] <= self.small_rectangle()[2] and self.small_rectangle()[1] <= hit_coord[1] <= self.small_rectangle()[3]
+

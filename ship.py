@@ -10,7 +10,7 @@ class Ship:  # S: класс, в котором для каждого кораб
     start_coord: list
     direction: int
     ship_len: int
-    hits: list
+    hits: set
     DIRECTION_UP = 1
     DIRECTION_RIGHT = 2
     DIRECTION_DOWN = 3
@@ -20,18 +20,16 @@ class Ship:  # S: класс, в котором для каждого кораб
         self.start_coord = start_coord
         self.direction = direction
         self.ship_len = ship_len
-        self.hits = []
+        self.hits = set()
         self.rectangle = r.Rectangle(self.start_coord, self.direction, self.ship_len)
-        self.small_rectangle = self.rectangle.small_rectangle()
-        self.big_rectangle = self.rectangle.big_rectangle()
 
     def out_of_field(self):
         for i in range(4):
-            if self.small_rectangle[i] < 0 or self.small_rectangle[i] > 9:
+            if self.rectangle.small_rectangle[i] < 0 or self.rectangle.small_rectangle[i] > 9:
                 raise ValueError("Корабль выходит за пределы поля")
         return True
 
-    def check_crossing(self, other_ship: Ship): # !!!поменять вызов этой функции (в классе field должен быть цикл по всем
+    def check_crossing(self, other_ship: Ship):  # !!!поменять вызов этой функции (в классе field должен быть цикл по всем
         # кораблям, который сравнивает два корабля)
         # метод проверяет, пересекается ли корабль, который игрок хочет поставить, с лдругими уже стоящими на поле.
         # метод принимает поле, возвращает True, если есть пересечения, и корабль ставить нельзя. возвращает False,
@@ -107,6 +105,9 @@ class Ship:  # S: класс, в котором для каждого кораб
         #
         #     return False
 
+    def hits(self, hit_coord: list):
+        if self.check_hits(hit_coord):
+            self.hits.add(hit_coord)
 
     def check_hits(self, hit_coord: list):
         # метод проверяет, попал ли выстрел в корабль. метод принимает координаты выстрела, возвращает True,
@@ -114,30 +115,31 @@ class Ship:  # S: класс, в котором для каждого кораб
         # попала ли точка в прямоугольник создать два прямоугольника для одного корабля: большой и маленький сделать
         # в чек хитс только проверку попадания, пополнять список попаданий в другом методе, который вызывает чек хитс
         # для проверки. проверять в хитс, чтобы все элементы были разными
-        if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
-            if self.direction == self.DIRECTION_LEFT:
-                step = -self.ship_len
-                dir = -1
-            else:
-                step = self.ship_len
-                dir = 1
-            for i in range(self.start_coord[0], self.start_coord[0] + step, dir):
-                if hit_coord == [i, self.start_coord[1]]:
-                    self.hits.append(hit_coord)
-                    return True
-            return False
-        if self.direction == self.DIRECTION_UP or self.direction == self.DIRECTION_DOWN:
-            if self.direction == self.DIRECTION_DOWN:
-                step = -self.ship_len
-                dir = -1
-            else:
-                step = self.ship_len
-                dir = 1
-            for i in range(self.start_coord[1], self.start_coord[1] + step, dir):
-                if hit_coord == [self.start_coord[0], i]:
-                    self.hits.append(hit_coord)
-                    return True
-            return False
+        return self.rectangle.hit(hit_coord)
+        # if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
+        #     if self.direction == self.DIRECTION_LEFT:
+        #         step = -self.ship_len
+        #         dir = -1
+        #     else:
+        #         step = self.ship_len
+        #         dir = 1
+        #     for i in range(self.start_coord[0], self.start_coord[0] + step, dir):
+        #         if hit_coord == [i, self.start_coord[1]]:
+        #             self.hits.append(hit_coord)
+        #             return True
+        #     return False
+        # if self.direction == self.DIRECTION_UP or self.direction == self.DIRECTION_DOWN:
+        #     if self.direction == self.DIRECTION_DOWN:
+        #         step = -self.ship_len
+        #         dir = -1
+        #     else:
+        #         step = self.ship_len
+        #         dir = 1
+        #     for i in range(self.start_coord[1], self.start_coord[1] + step, dir):
+        #         if hit_coord == [self.start_coord[0], i]:
+        #             self.hits.append(hit_coord)
+        #             return True
+        #     return False
 
     def is_died(self):
         # метод проверяет, убит ли корабль. сравнивается длина корабля и количество попаданий по нему. Если корабль
