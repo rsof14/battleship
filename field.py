@@ -54,11 +54,11 @@ class Field:
         words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
         if coord[0] not in words:
             raise ValueError("Несоответствующее значение")
-        coord0 = words.index(coord[0])
-        coord1 = int(coord[1:len(coord)])
-        if not 1 <= coord1 <= 10:
+        coord_y = words.index(coord[0])
+        coord_x = int(coord[1:len(coord)])
+        if not 1 <= coord_x <= 10:
             raise ValueError("Несоответствующее значение")
-        return [coord0, coord1 - 1]
+        return [coord_y, coord_x - 1]
 
     def add_ship(self, ship: sh.Ship):
         # метод отвечает за добавление корабля на поле. принимает корабль, проверяет, можно ли его поставить (это

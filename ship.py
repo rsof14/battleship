@@ -1,8 +1,9 @@
 from __future__ import annotations
 import field as f
+import rectangle as r
 
 
-class Ship: # S: класс, в котором для каждого корабля определяются параметры (начальная координата, направление,
+class Ship:  # S: класс, в котором для каждого корабля определяются параметры (начальная координата, направление,
     # длина, массив ударов по этому кораблю), есть методы, определяющие, можно ли поставить корабль на поле,
     # попал ли выстрел по кораблю и затоплен ли корабль
     # O: не знаю, какие причины, кроме исправления ошибок
@@ -20,8 +21,18 @@ class Ship: # S: класс, в котором для каждого кораб�
         self.direction = direction
         self.ship_len = ship_len
         self.hits = []
+        self.rectangle = r.Rectangle(self.start_coord, self.direction, self.ship_len)
+        self.small_rectangle = self.rectangle.small_rectangle()
+        self.big_rectangle = self.rectangle.big_rectangle()
 
-    def check_crossing(self, field: f.Field):
+    def out_of_field(self):
+        for i in range(4):
+            if self.small_rectangle[i] < 0 or self.small_rectangle[i] > 9:
+                raise ValueError("Корабль выходит за пределы поля")
+        return True
+
+    def check_crossing(self, other_ship: Ship): # !!!поменять вызов этой функции (в классе field должен быть цикл по всем
+        # кораблям, который сравнивает два корабля)
         # метод проверяет, пересекается ли корабль, который игрок хочет поставить, с лдругими уже стоящими на поле.
         # метод принимает поле, возвращает True, если есть пересечения, и корабль ставить нельзя. возвращает False,
         # если пересечений нет. Исключительные ситуации, если корабль, который игрок хочет поставить, выходит за
@@ -29,69 +40,73 @@ class Ship: # S: класс, в котором для каждого кораб�
         # вынести проверку на выход за поле
         # создать поле с прямоугольной областью вокруг корабля, либо класс прямоугольник для геом. операций!!!!
         # проверять пересечение двух кораблей, т.е. пересечение двух прямоугольников
-        if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
-            if self.direction == self.DIRECTION_LEFT:
-                step = -self.ship_len
-                dir = -1
-            else:
-                step = self.ship_len
-                dir = 1
-            for i in range(self.start_coord[0], self.start_coord[0] + step, dir):
-                if abs(i) >= 10 or abs(self.start_coord[1]) >= 10 or i < 0:
-                    raise ValueError("Корабль выходит за пределы поля")
-                if i - 1 < 0:
-                    tk = 0
-                else:
-                    tk = i - 1
-                if i + 2 > 9:
-                    yk = 9
-                else:
-                    yk = i + 2
-                if self.start_coord[1] - 1 < 0:
-                    tj = 0
-                else:
-                    tj = self.start_coord[1] - 1
-                if self.start_coord[1] + 2 > 9:
-                    yj = 9
-                else:
-                    yj = self.start_coord[1] + 2
-                for k in range(tk, yk):
-                    for j in range(tj, yj):
-                        if field.field[self.start_coord[1]][i] != ' ' or field.field[j][k] != ' ':
-                            return True
-            return False
-        if self.direction == self.DIRECTION_UP or self.direction == self.DIRECTION_DOWN:
-            if self.direction == self.DIRECTION_DOWN:
-                step = -self.ship_len
-                dir = -1
-            else:
-                step = self.ship_len
-                dir = 1
-            for i in range(self.start_coord[1], self.start_coord[1] + step, dir):
-                if abs(i) >= 10 or abs(self.start_coord[1]) >= 10 or i < 0:
-                    raise ValueError("Корабль выходит за пределы поля")
-                if i - 1 < 0:
-                    tk = 0
-                else:
-                    tk = i - 1
-                if i + 2 > 9:
-                    yk = 9
-                else:
-                    yk = i + 2
-                if self.start_coord[0] - 1 < 0:
-                    tj = 0
-                else:
-                    tj = self.start_coord[0] - 1
-                if self.start_coord[0] + 2 > 9:
-                    yj = 9
-                else:
-                    yj = self.start_coord[0] + 2
-                for k in range(tk, yk):
-                    for j in range(tj, yj):
-                        if field.field[i][self.start_coord[0]] != ' ' or field.field[j][k] != ' ':
-                            return True
+        if self.out_of_field():
+            return self.rectangle.check_crossing(other_ship)
 
-            return False
+        # if self.direction == self.DIRECTION_LEFT or self.direction == self.DIRECTION_RIGHT:
+        #     if self.direction == self.DIRECTION_LEFT:
+        #         step = -self.ship_len
+        #         dir = -1
+        #     else:
+        #         step = self.ship_len
+        #         dir = 1
+        #     for i in range(self.start_coord[0], self.start_coord[0] + step, dir):
+        #         if abs(i) >= 10 or abs(self.start_coord[1]) >= 10 or i < 0:
+        #             raise ValueError("Корабль выходит за пределы поля")
+        #         if i - 1 < 0:
+        #             tk = 0
+        #         else:
+        #             tk = i - 1
+        #         if i + 2 > 9:
+        #             yk = 9
+        #         else:
+        #             yk = i + 2
+        #         if self.start_coord[1] - 1 < 0:
+        #             tj = 0
+        #         else:
+        #             tj = self.start_coord[1] - 1
+        #         if self.start_coord[1] + 2 > 9:
+        #             yj = 9
+        #         else:
+        #             yj = self.start_coord[1] + 2
+        #         for k in range(tk, yk):
+        #             for j in range(tj, yj):
+        #                 if field.field[self.start_coord[1]][i] != ' ' or field.field[j][k] != ' ':
+        #                     return True
+        #     return False
+        # if self.direction == self.DIRECTION_UP or self.direction == self.DIRECTION_DOWN:
+        #     if self.direction == self.DIRECTION_DOWN:
+        #         step = -self.ship_len
+        #         dir = -1
+        #     else:
+        #         step = self.ship_len
+        #         dir = 1
+        #     for i in range(self.start_coord[1], self.start_coord[1] + step, dir):
+        #         if abs(i) >= 10 or abs(self.start_coord[1]) >= 10 or i < 0:
+        #             raise ValueError("Корабль выходит за пределы поля")
+        #         if i - 1 < 0:
+        #             tk = 0
+        #         else:
+        #             tk = i - 1
+        #         if i + 2 > 9:
+        #             yk = 9
+        #         else:
+        #             yk = i + 2
+        #         if self.start_coord[0] - 1 < 0:
+        #             tj = 0
+        #         else:
+        #             tj = self.start_coord[0] - 1
+        #         if self.start_coord[0] + 2 > 9:
+        #             yj = 9
+        #         else:
+        #             yj = self.start_coord[0] + 2
+        #         for k in range(tk, yk):
+        #             for j in range(tj, yj):
+        #                 if field.field[i][self.start_coord[0]] != ' ' or field.field[j][k] != ' ':
+        #                     return True
+        #
+        #     return False
+
 
     def check_hits(self, hit_coord: list):
         # метод проверяет, попал ли выстрел в корабль. метод принимает координаты выстрела, возвращает True,
