@@ -17,39 +17,39 @@ class Field:
         self.died_ships = []
         self.field = [[' ' for i in range(10)] for i in range(10)]  # нужно ли это поле
 
-    def print_my_field(self): # метод переезжает в класс Print
-        # метод выводит поле игрока-человека
-        # вынести принты в отдельный класс
-        words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
-        for i in range(-1, 10):
-            for j in range(-1, 10):
-                if i == -1 and j == -1:
-                    print(' ', end='')
-                if i == -1 and j != -1:
-                    print(words[j], end='')
-                if i != -1 and j == -1:
-                    print(i + 1, end='')
-                if i != -1 and j != -1:
-                    print(self.field[i][j], end='')
-            print()
-
-    def print_opponent_field(self): # метод переезжает в класс Print
-        # метод выводит поле игрока-компьютера для игрока-человека
-        words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
-        for i in range(-1, 10):
-            for j in range(-1, 10):
-                if i == -1 and j == -1:
-                    print(' ', end='')
-                if i == -1 and j != -1:
-                    print(words[j], end='')
-                if i != -1 and j == -1:
-                    print(i + 1, end='')
-                if i != -1 and j != -1:
-                    if self.field[i][j] != 'K':
-                        print(self.field[i][j], end='')
-                    else:
-                        print(' ', end='')
-            print()
+    # def print_my_field(self): # метод переезжает в класс Print
+    #     # метод выводит поле игрока-человека
+    #     # вынести принты в отдельный класс
+    #     words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
+    #     for i in range(-1, 10):
+    #         for j in range(-1, 10):
+    #             if i == -1 and j == -1:
+    #                 print(' ', end='')
+    #             if i == -1 and j != -1:
+    #                 print(words[j], end='')
+    #             if i != -1 and j == -1:
+    #                 print(i + 1, end='')
+    #             if i != -1 and j != -1:
+    #                 print(self.field[i][j], end='')
+    #         print()
+    #
+    # def print_opponent_field(self): # метод переезжает в класс Print
+    #     # метод выводит поле игрока-компьютера для игрока-человека
+    #     words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
+    #     for i in range(-1, 10):
+    #         for j in range(-1, 10):
+    #             if i == -1 and j == -1:
+    #                 print(' ', end='')
+    #             if i == -1 and j != -1:
+    #                 print(words[j], end='')
+    #             if i != -1 and j == -1:
+    #                 print(i + 1, end='')
+    #             if i != -1 and j != -1:
+    #                 if self.field[i][j] != 'K':
+    #                     print(self.field[i][j], end='')
+    #                 else:
+    #                     print(' ', end='')
+    #         print()
 
     def set_coord(self, coord: str):
         # метод преобразует координаты из вида "буква-цифра" к виду "цифра-цифра". возвращает лист из двух координат
