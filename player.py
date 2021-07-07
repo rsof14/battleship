@@ -33,7 +33,7 @@ class Player(ABC):
     Если добавить корабль в поле можно, исключительных ситуаций не возникает.
     Иначе возникает ValueError.
     """
-    def set_random(self):
+    def set_randomly(self):
         for ship_size in range(len(Player.SHIPS_NUM) - 1, 0, -1):
             for j in range(Player.SHIPS_NUM[ship_size]):
                 while True:

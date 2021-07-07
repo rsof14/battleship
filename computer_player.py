@@ -10,11 +10,14 @@ from field import Field
 class ComputerPlayer(Player):
     NAME = "Компьютер"  # нужно, чтобы проще вывести победителя в Game.move
 
+    def __init__(self, already_hit):
+        self.already_hit = []
+
     """
     Этот метод случайным образом производит расстановку кораблей.
     """
     def set_ships(self):
-        self.set_random()
+        self.set_randomly()
 
     """
     Этот метод случайным образом выбирает координату в поле противника, куда стрелять.
