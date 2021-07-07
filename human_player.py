@@ -94,7 +94,7 @@ class HumanPLayer(Player):
     """
     Этот метод выводит на экран поле Игрока и поле Противника в данный момент игры.
     """
-    def show_field(self, opponent_field: Field):
+    def show_field(self, opponent_field: Field): # печать поля теперь из print
         print('Ваше поле: ')
         self.field.print_my_field()
         print('Поле противника:')
