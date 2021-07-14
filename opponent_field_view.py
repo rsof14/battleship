@@ -7,7 +7,7 @@ class OpponentFieldView:
     def __init__(self, opponent_field: Field):
         self.opponent_field = opponent_field
 
-    def make_opponent_field(self):
+    def make_field(self):
         opponent_field = [[' ' for i in range(1, 11)] for i in range(1, 11)]
         opponent_field[0] = self.RAW0
         for i in range(1, 11):
@@ -21,8 +21,8 @@ class OpponentFieldView:
             opponent_field[ship_coord.row][ship_coord.col] = 'x'
         return opponent_field
 
-    def print_opponent_field(self):
-        opponent_field = self.make_opponent_field()
+    def print_field(self):
+        opponent_field = self.make_field()
         for i in range(11):
             for j in range(11):
                 print(opponent_field[i][j], end='')

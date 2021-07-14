@@ -16,10 +16,10 @@ class View:
                          'чтобы расставить корабли в случайном порядке'))
 
     def print_owner_field(self):
-        self.owner_field.print_my_field()
+        self.owner_field.print_field()
 
     def print_opponent_field(self):
-        self.opponent_field.print_opponent_field()
+        self.opponent_field.print_field()
 
     def first_turn(self):
         print("Случайным образом выбрано: вы ходите первыми")

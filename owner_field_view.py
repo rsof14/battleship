@@ -8,7 +8,7 @@ class OwnerFieldView:
     def __init__(self, my_field: Field):
         self.my_field = my_field
 
-    def make_my_field(self):  # сделать классы для полей и из них печатать
+    def make_field(self):  # сделать классы для полей и из них печатать
         my_field = [[' ' for i in range(1, 11)] for i in range(1, 11)]
         my_field[0] = self.RAW0
         for i in range(1, 11):
@@ -25,8 +25,8 @@ class OwnerFieldView:
             my_field[ship_coord.row][ship_coord.col] = 'x'
         return my_field
 
-    def print_my_field(self):
-        my_field = self.make_my_field()
+    def print_field(self):
+        my_field = self.make_field()
         for i in range(11):
             for j in range(11):
                 print(my_field[i][j], end='')
