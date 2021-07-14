@@ -1,7 +1,7 @@
 from __future__ import annotations
 import field as f
 import rectangle as r
-import point as point
+import point 
 
 
 class Ship:  # S: класс, в котором для каждого корабля определяются параметры (начальная координата, направление,

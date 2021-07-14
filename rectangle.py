@@ -1,6 +1,6 @@
 from __future__ import annotations
 from ship import Ship
-import point as point
+import point
 
 
 class Rectangle:

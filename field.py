@@ -1,6 +1,6 @@
 from __future__ import annotations
 import ship as sh
-import point as point
+import point
 
 
 class Field:
@@ -56,7 +56,7 @@ class Field:
         # (только непонятно, какая - столбец, какая - строка). исключительные ситуации в случае, когда координаты
         # передаются в несоответсвующем формате
         # хранить координаты в датаклассе Point
-        start_coord = point.Point.set_coord(coord)
+        start_coord = point.Point.from_string(coord)
         return start_coord
         # words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
         # if coord[0] not in words:

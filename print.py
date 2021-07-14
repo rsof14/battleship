@@ -10,7 +10,7 @@ class Print:
         self.my_field = my_field
         self.opponent_field = opponent_field
 
-    def make_my_field(self):
+    def make_my_field(self): # сделать классы для полей и из них печатать
         my_field = [[' ' for i in range(1, 11)] for i in range(1, 11)]
         my_field[0] = self.RAW0
         for i in range(1, 11):

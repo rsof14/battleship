@@ -7,7 +7,7 @@ class Point:
     col: int
 
     @staticmethod
-    def set_coord(coord: str):
+    def from_string(coord: str):
         col_words = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К']
         if coord[0] not in col_words:
             raise ValueError("Несоответствующее значение")
@@ -15,4 +15,5 @@ class Point:
         row = int(coord[1:len(coord)])
         if not 1 <= row <= 10:
             raise ValueError("Несоответствующее значение")
+        return Point(row, col)
 
