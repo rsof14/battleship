@@ -8,7 +8,7 @@ class View:
         self.owner_field = OwnerFieldView(owner_field)
         self.opponent_field = OpponentFieldView(opponent_field)
 
-    def welcome_msg():
+    def show_welcome_msg():
         print("Перед вами игра Морской бой с компьютером")
 
     def set_ships():
@@ -21,10 +21,10 @@ class View:
     def print_opponent_field(self):
         self.opponent_field.print_field()
 
-    def first_turn(self):
+    def print_first_turn(self):
         print("Случайным образом выбрано: вы ходите первыми")
 
-    def second_turn(self):
+    def print_second_turn(self):
         print("Случайным образом выбрано: компьютер ходит первым")
 
     def print_winner(self, winner_name: str):

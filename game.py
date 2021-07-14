@@ -32,10 +32,10 @@ class Game:  # S: класс управляет игрой (вызов функ�
         # игроков, после чего определяется победитель. Парметры: self, возвращаемых значений нет
         first_player = randint(1, 2)
         if first_player == 1:
-            self.view.first_turn()
+            self.view.print_first_turn()
             turn = 0
         else:
-            self.view.second_turn()
+            self.view.print_second_turn()
             turn = -1
         while len(self.players[0].field.ships) != 0 and len(self.players[1].field.ships) != 0:
             self.players[turn % 2].show_field(self.players[(turn - 1) % 2].field)
@@ -47,7 +47,7 @@ class Game:  # S: класс управляет игрой (вызов функ�
 
 
 if __name__ == "__main__":
-    View.welcome_msg()
+    View.show_welcome_msg()
     game = Game()
     game.set_ships()
     game.move()
