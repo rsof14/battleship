@@ -5,7 +5,7 @@ from ship import Ship
 from computer_player import ComputerPlayer
 from human_player import HumanPLayer
 from player import Player
-import view
+from view import View
 
 
 class Game:  # S: класс управляет игрой (вызов функции расстановки кораблей, очередность ходов)
@@ -14,16 +14,17 @@ class Game:  # S: класс управляет игрой (вызов функ�
 
     def __init__(self):
         self.players = [HumanPLayer(), ComputerPlayer()]
+        self.view = View(self.players[0].field, self.players[1].field)
 
     def set_ships(self):
         # спрашивает игрока-человека, как расставить корабли: рандомно или самостоятельно, в первом случае вызывает
         # метод класса игрока для расстановки кораблей, во втором случае вызывает метод для рандомной расстановки,
         # затем выводит поле и расставляет кораблик игрока-компьютера. Парметры: self, возвращаемых значений нет
-        if view.set_ships() == 1:
+        if self.view.set_ships() == 1:
             self.players[0].set_ships()
         else:
             self.players[0].set_randomly()
-        view.print_owner_field(self.players[0].field)
+        self.view.print_owner_field()
         self.players[1].set_randomly()
 
     def move(self):
@@ -31,22 +32,22 @@ class Game:  # S: класс управляет игрой (вызов функ�
         # игроков, после чего определяется победитель. Парметры: self, возвращаемых значений нет
         first_player = randint(1, 2)
         if first_player == 1:
-            view.first_turn()
+            self.view.first_turn()
             turn = 0
         else:
-            view.second_turn()
+            self.view.second_turn()
             turn = -1
         while len(self.players[0].field.ships) != 0 and len(self.players[1].field.ships) != 0:
             self.players[turn % 2].show_field(self.players[(turn - 1) % 2].field)
             self.players[turn % 2].move(self.players[(turn - 1) % 2].field)
             turn += 1
             if len(self.players[turn % 2].field.ships) == 0:
-                view.print_winner (self.players[(turn - 1) % 2].NAME)
+                self.view.print_winner(self.players[(turn - 1) % 2].NAME)
                 break
 
 
 if __name__ == "__main__":
-    view.welcome_msg()
+    View.welcome_msg()
     game = Game()
     game.set_ships()
     game.move()

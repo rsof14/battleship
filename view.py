@@ -3,30 +3,29 @@ from owner_field_view import OwnerFieldView
 from field import Field
 
 
-def welcome_msg():
-    print("Перед вами игра Морской бой с компьютером")
+class View:
+    def __init__(self, owner_field: Field, opponent_field: Field):
+        self.owner_field = OwnerFieldView(owner_field)
+        self.opponent_field = OpponentFieldView(opponent_field)
 
+    def welcome_msg():
+        print("Перед вами игра Морской бой с компьютером")
 
-def set_ships():
-    return int(input('нажмите 1, чтобы расставить корабли самостоятельно, нажмите 2, '
-                     'чтобы расставить корабли в случайном порядке'))
+    def set_ships():
+        return int(input('нажмите 1, чтобы расставить корабли самостоятельно, нажмите 2, '
+                         'чтобы расставить корабли в случайном порядке'))
 
+    def print_owner_field(self):
+        self.owner_field.print_my_field()
 
-def print_owner_field(field: Field):
-    OwnerFieldView(field).print_my_field()
+    def print_opponent_field(self):
+        self.opponent_field.print_opponent_field()
 
+    def first_turn(self):
+        print("Случайным образом выбрано: вы ходите первыми")
 
-def print_opponent_field(field: Field):
-    OpponentFieldView(field).print_opponent_field()
+    def second_turn(self):
+        print("Случайным образом выбрано: компьютер ходит первым")
 
-
-def first_turn():
-    print("Случайным образом выбрано: вы ходите первыми")
-
-
-def second_turn():
-    print("Случайным образом выбрано: компьютер ходит первым")
-
-
-def print_winner(winner_name: str):
-    print(f"Победил {winner_name}")
+    def print_winner(self, winner_name: str):
+        print(f"Победил {winner_name}")
