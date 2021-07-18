@@ -44,9 +44,9 @@ class HumanPLayer(Player):
     def set_directions(self):
         # пока ещё не поняла, как работает расположение кораблей у Софьи.
         direction = int(input("""Укажите расположение вашего корабля относительно поля 
-                                2 : горизонтально (бывшее вправо);
-                                3 : вертикально (бывшее вниз)."""))
-        while direction not in (2, 3):
+                                1 : горизонтально (бывшее вправо);
+                                2 : вертикально (бывшее вниз)."""))
+        while direction not in (1, 2):
             direction = int(input('Вы ввели неправильное направление у корабля! Попробуйте ещё раз: '))
         return direction
 
@@ -62,7 +62,10 @@ class HumanPLayer(Player):
     Иначе возникает ValueError.
     """
     def set_ships(self):
-        self.field.print_my_field()
+        self.field.print_my_field() # теперь печать поля происходит через класс view (методы print_owner_field и
+        # print_opponent_field)
+        # думаю, в этом методе вообще ничего не нужно выводить, т.к. он вызывается из класса Game, в котором все и
+        # так выводится через класс view
         if self.wonder_set_auto():
             self.set_randomly() 
             self.field.print_my_field()

@@ -8,9 +8,6 @@ class Rectangle:
         self.start_coord = start_coord
         self.direction = direction  # оставлю направления вправо и вниз
         self.ship_len = ship_len
-        # self.coord_y = self.start_coord[0]
-        # self.coord_x = self.start_coord[1]
-    #def small_rectangle(self):
         if self.direction == Ship.DIRECTION_RIGHT:
             self.small_rectangle = [self.start_coord.row, self.start_coord.col, self.start_coord.row, self.start_coord.col + self.ship_len]
         else:

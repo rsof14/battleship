@@ -39,7 +39,7 @@ class Player(ABC):
                 while True:
                     row = randint(0, 9)
                     col = randint(0, 9)
-                    ship_direction = randint(1, 4)
+                    ship_direction = randint(1, 2) # осталось два направления - вправо и вниз, вправо - 1, вниз - 2
                     ship = Ship([row, col], ship_direction, ship_size)
                     try:
                         self.field.add_ship(ship)

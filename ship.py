@@ -12,10 +12,8 @@ class Ship:  # S: класс, в котором для каждого кораб
     direction: int
     ship_len: int
     hits: set
-    DIRECTION_UP = 1
-    DIRECTION_RIGHT = 2
-    DIRECTION_DOWN = 3
-    DIRECTION_LEFT = 4
+    DIRECTION_RIGHT = 1
+    DIRECTION_DOWN = 2
 
     def __init__(self, start_coord: point.Point, direction: int, ship_len: int):
         self.start_coord = start_coord
