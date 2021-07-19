@@ -1,6 +1,7 @@
 from random import randint
-from player import Player
+
 from field import Field
+from player import Player
 
 """
 Класс Игрок-Компьтер, который отвечает за его ход и реализацию абстрактного класса Игрок. 
