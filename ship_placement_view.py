@@ -1,8 +1,13 @@
+from owner_field_view import OwnerFieldView
+from field import Field
 from human_player import HumanPLayer
 
 class ShipPlacementView:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, field: Field):
+        self.view = OwnerFieldView(field)
+
+    def print_field(self):
+        self.view.print_field()
 
     "Этот метод спрашивает игрока, хочет ли он расставить корабли на поле случайным образом."
     def wonder_set_auto(self):

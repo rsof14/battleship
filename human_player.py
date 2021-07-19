@@ -87,11 +87,8 @@ class HumanPLayer(Player):
         cell_int = opponent_field.set_coord(marked_cell)
         opponent_field.to_hit(cell_int)
 
-    # """
-    # Этот метод выводит на экран поле Игрока и поле Противника в данный момент игры.
-    # """
-    # def show_field(self, opponent_field: Field): # печать поля теперь из print
-    #     print('Ваше поле: ')
-    #     self.field.print_my_field()
-    #     print('Поле противника:')
-    #     opponent_field.print_opponent_field()
+    """
+    Этот метод выводит на экран поле Игрока и поле Противника в данный момент игры.
+    """
+    def show_field(self, opponent_field: Field):
+        self.spv.view.print_field()
