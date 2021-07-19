@@ -22,11 +22,14 @@ class ShipPlacementView:
 
     def enter_directions(self):
         return int(input("""Укажите расположение вашего корабля относительно поля 
-                                2 : горизонтально;
-                                3 : вертикально."""))
+                                1 : горизонтально;
+                                2 : вертикально."""))
 
-    def set_sizes(self):
-        pass
+    def enter_coord(self):
+        return str(input('Укажите координату начала корабля:'))
+
+    def enter_hit_cell(self):
+        return str(input('Введите номер клетки поля, куда будете стрелять: '))
 
     def show_error(error_message: str):
         print(error_message)
