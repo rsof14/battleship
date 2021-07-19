@@ -6,6 +6,7 @@ from computer_player import ComputerPlayer
 from human_player import HumanPLayer
 from player import Player
 from view import View
+import ship_placement_view as spv
 
 
 class Game:  # S: класс управляет игрой (вызов функции расстановки кораблей, очередность ходов)
@@ -13,8 +14,10 @@ class Game:  # S: класс управляет игрой (вызов функ�
     players: list[Player]
 
     def __init__(self):
-        self.players = [HumanPLayer(), ComputerPlayer()]
+        self.spv = spv.ShipPlacementView(self.players[0].field)
+
         self.view = View(self.players[0].field, self.players[1].field)
+        self.players = [HumanPLayer(self.spv, self.view), ComputerPlayer()]
 
     def set_ships(self):
         # спрашивает игрока-человека, как расставить корабли: рандомно или самостоятельно, в первом случае вызывает

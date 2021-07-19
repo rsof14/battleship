@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 from owner_field_view import OwnerFieldView
 from field import Field
 import human_player as hp
+
 
 class ShipPlacementView:
     def __init__(self, field: Field):

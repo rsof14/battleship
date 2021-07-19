@@ -11,7 +11,7 @@ from player import Player
 class ComputerPlayer(Player):
     NAME = "Компьютер"  # нужно, чтобы проще вывести победителя в Game.move
 
-    def __init__(self, already_hit):
+    def __init__(self):
         self.already_hit = []
 
     """
