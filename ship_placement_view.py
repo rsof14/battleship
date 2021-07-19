@@ -1,12 +1,7 @@
 <<<<<<< HEAD
 from owner_field_view import OwnerFieldView
 from field import Field
-from human_player import HumanPLayer
-=======
-# from human_player import HumanPLayer
 import human_player as hp
-
->>>>>>> 03b6852652588883731dfe09fe208814acf51121
 
 class ShipPlacementView:
     def __init__(self, field: Field):
