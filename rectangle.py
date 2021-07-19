@@ -1,5 +1,5 @@
 from __future__ import annotations
-from ship import Ship
+import ship as sh
 import point
 
 
@@ -8,13 +8,13 @@ class Rectangle:
         self.start_coord = start_coord
         self.direction = direction  # оставлю направления вправо и вниз
         self.ship_len = ship_len
-        if self.direction == Ship.DIRECTION_RIGHT:
+        if self.direction == sh.Ship.DIRECTION_RIGHT:
             self.small_rectangle = [self.start_coord.row, self.start_coord.col, self.start_coord.row, self.start_coord.col + self.ship_len]
         else:
             self.small_rectangle = [self.start_coord.row, self.start_coord.col, self.start_coord.row + self.ship_len, self.start_coord.col]
 
     def big_rectangle(self):
-        if self.direction == Ship.DIRECTION_RIGHT:
+        if self.direction == sh.Ship.DIRECTION_RIGHT:
             big_rectangle = [self.start_coord.row - 1, self.start_coord.col - 1, self.start_coord.row + 1, self.start_coord.col + self.ship_len + 1]
         else:
             big_rectangle = [self.start_coord.row - 1, self.start_coord.col - 1, self.start_coord.row + self.ship_len + 1, self.start_coord.col + 1]
