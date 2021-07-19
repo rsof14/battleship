@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 from owner_field_view import OwnerFieldView
 from field import Field
 from human_player import HumanPLayer
+=======
+# from human_player import HumanPLayer
+import human_player as hp
+
+>>>>>>> 03b6852652588883731dfe09fe208814acf51121
 
 class ShipPlacementView:
     def __init__(self, field: Field):
@@ -10,16 +16,18 @@ class ShipPlacementView:
         self.view.print_field()
 
     "Этот метод спрашивает игрока, хочет ли он расставить корабли на поле случайным образом."
+
     def wonder_set_auto(self):
-        return str(input("Хотите ли вы расставить корабли случайным образом? Введите Да/Нет."))         
+        return str(input("Хотите ли вы расставить корабли случайным образом? Введите Да/Нет."))
 
     "Этот метод информирует игрока о доступном количестве кораблей разного типажа в данный момент времени."
+
     def inform_player(self):
         print(f"""Доступное количество кораблей
-                четырёхпалубных : {HumanPLayer.SHIPS_NUM[4]};
-                трёхпалубных : {HumanPLayer.SHIPS_NUM[3]};
-                двухпалубных : {HumanPLayer.SHIPS_NUM[2]};
-                однопалубных : {HumanPLayer.SHIPS_NUM[1]}. 
+                четырёхпалубных : {hp.HumanPLayer.SHIPS_NUM[4]};
+                трёхпалубных : {hp.HumanPLayer.SHIPS_NUM[3]};
+                двухпалубных : {hp.HumanPLayer.SHIPS_NUM[2]};
+                однопалубных : {hp.HumanPLayer.SHIPS_NUM[1]}. 
                 """)
 
     def enter_desk(self, i: int):
