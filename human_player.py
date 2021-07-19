@@ -55,16 +55,16 @@ class HumanPLayer(Player):
     Иначе возникает ValueError.
     """
     def set_ships(self):
-        self.view.print_owner_field()
+        self.show_field()
         if self.auto_set():
             self.set_randomly() 
-            self.view.print_owner_field()
+            self.show_field()
         for ship in range(10):
             while True:
                 added_ship = self.create_ship(ship)
                 try:
                     self.field.add_ship(added_ship)
-                    self.view.print_owner_field()
+                    self.show_field()
                 except ValueError:
                     pass
                 else:
