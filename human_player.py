@@ -13,9 +13,15 @@ class HumanPLayer(Player):
     SHIPS_NUM = [0, 4, 3, 2, 1]
     NAME = "Игрок - Человек"  # нужно, чтобы проще вывести победителя в Game.move
 
-    def __init__(self, spv: ShipPlacementView, view: View):
-        self.spv = spv
+    # def __init__(self, spv: ShipPlacementView, view: View):
+    #     self.spv = spv
+    #     self.view = view
+
+    def __init__(self, field: Field, view: View):
+        super().__init__()
+        self.spv = ShipPlacementView(field)
         self.view = view
+
         
     def auto_set(self):
         if self.spv.wonder_set_auto() == "Да":
@@ -91,4 +97,7 @@ class HumanPLayer(Player):
     Этот метод выводит на экран поле Игрока и поле Противника в данный момент игры.
     """
     def show_field(self, opponent_field: Field):
-        self.spv.view.print_field()
+        self.view.print_owner_field()
+        self.view.print_opponent_field()
+        #self.spv.view.print_field()
+

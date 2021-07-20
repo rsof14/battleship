@@ -3,15 +3,19 @@ from owner_field_view import OwnerFieldView
 from field import Field
 
 
+def show_welcome_msg():
+    print("Перед вами игра Морской бой с компьютером")
+
+
 class View:
     def __init__(self, owner_field: Field, opponent_field: Field):
         self.owner_field = OwnerFieldView(owner_field)
         self.opponent_field = OpponentFieldView(opponent_field)
 
-    def show_welcome_msg():
-        print("Перед вами игра Морской бой с компьютером")
+    # def show_welcome_msg(self):
+    #     print("Перед вами игра Морской бой с компьютером")
 
-    def set_ships():
+    def set_ships(self):
         return int(input('нажмите 1, чтобы расставить корабли самостоятельно, нажмите 2, '
                          'чтобы расставить корабли в случайном порядке'))
 

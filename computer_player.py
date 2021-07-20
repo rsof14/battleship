@@ -1,5 +1,5 @@
 from random import randint
-
+from point import Point
 from field import Field
 from player import Player
 
@@ -12,6 +12,7 @@ class ComputerPlayer(Player):
     NAME = "Компьютер"  # нужно, чтобы проще вывести победителя в Game.move
 
     def __init__(self):
+        super().__init__()
         self.already_hit = []
 
     """
@@ -26,14 +27,14 @@ class ComputerPlayer(Player):
     """
     def move(self, opponent_field: Field):
         already_hit = [] 
-        row = randint(0, 9)
-        col = randint(0, 9)
+        row = randint(1, 10)
+        col = randint(1, 10)
         point = str(row) + str(col)
         while point in already_hit:        
-            row = randint(0, 9)
-            col = randint(0, 9)
+            row = randint(1, 10)
+            col = randint(1, 10)
             point = str(row) + str(col)
-        opponent_field.to_hit([row, col])
+        opponent_field.to_hit(Point(row, col))
         already_hit.append(point)
 
     def show_field(self, opponent_field: Field): # печать поля теперь из print

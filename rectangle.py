@@ -18,11 +18,11 @@ class Rectangle:
             big_rectangle = [self.start_coord.row - 1, self.start_coord.col - 1, self.start_coord.row + 1, self.start_coord.col + self.ship_len + 1]
         else:
             big_rectangle = [self.start_coord.row - 1, self.start_coord.col - 1, self.start_coord.row + self.ship_len + 1, self.start_coord.col + 1]
-        for i in range (4):
+        for i in range(4):
             if big_rectangle[i] < 0:
-                big_rectangle += 1
+                big_rectangle[i] += 1
             if big_rectangle[i] > 9:
-                big_rectangle -= 1
+                big_rectangle[i] -= 1
         return big_rectangle
 
     def check_crossing(self, other_ship_big_rectangle: Rectangle): # проверить еще раз после того, как координаты стали point

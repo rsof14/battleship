@@ -9,15 +9,15 @@ class OwnerFieldView:
         self.my_field = my_field
 
     def make_field(self):  # сделать классы для полей и из них печатать
-        my_field = [[' ' for i in range(1, 11)] for i in range(1, 11)]
+        my_field = [[' ' for i in range(0, 11)] for i in range(0, 11)]
         my_field[0] = self.RAW0
         for i in range(1, 11):
             my_field[i][0] = i
         for ship in self.my_field.ships:
-            for ship_coord in ship.all_coords:
+            for ship_coord in ship.all_cd():
                 my_field[ship_coord.row][ship_coord.col] = 'K'
         for hits_misses in self.my_field.hits_misses:
-            if hits_misses is True:
+            if self.my_field.hits_misses[hits_misses] is True:
                 my_field[hits_misses.row][hits_misses.col] = 'o'
             else:
                 my_field[hits_misses.row][hits_misses.col] = '.'

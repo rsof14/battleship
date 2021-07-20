@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 
-@dataclass
+@dataclass(unsafe_hash=True)
 class Point:
     row: int
     col: int
@@ -16,4 +16,3 @@ class Point:
         if not 1 <= row <= 10:
             raise ValueError("Несоответствующее значение")
         return Point(row, col)
-

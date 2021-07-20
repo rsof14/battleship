@@ -48,7 +48,9 @@ class Field:
                 flag = True
             if ship.is_died():
                 for ship_coord in ship.all_coords:
-                    self.died_ships.append(self.hits_misses.pop(ship_coord))
+                    self.died_ships.append(ship_coord)
+                    deleted = self.hits_misses.pop(ship_coord, None)
+                    #self.died_ships.append(self.hits_misses.pop(ship_coord))
                 self.ships.remove(ship)
                 break
         if not flag:

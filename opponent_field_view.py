@@ -8,12 +8,12 @@ class OpponentFieldView:
         self.opponent_field = opponent_field
 
     def make_field(self):
-        opponent_field = [[' ' for i in range(1, 11)] for i in range(1, 11)]
+        opponent_field = [[' ' for i in range(0, 11)] for i in range(0, 11)]
         opponent_field[0] = self.RAW0
         for i in range(1, 11):
             opponent_field[i][0] = i
         for hits_misses in self.opponent_field.hits_misses:
-            if hits_misses is True:
+            if self.opponent_field.hits_misses[hits_misses] is True:
                 opponent_field[hits_misses.row][hits_misses.col] = 'o'
             else:
                 opponent_field[hits_misses.row][hits_misses.col] = '.'

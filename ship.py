@@ -27,16 +27,16 @@ class Ship:  # S: класс, в котором для каждого кораб
 
     def all_cd(self):
         if self.direction == self.DIRECTION_RIGHT:
-            for i in range(self.ship_len):
+            for i in range(1, self.ship_len):
                 self.all_coords.append(point.Point(self.start_coord.row, self.start_coord.col + i))  # сработает или нет?
         if self.direction == self.DIRECTION_DOWN:
-            for i in range(self.ship_len):
+            for i in range(1, self.ship_len):
                 self.all_coords.append(point.Point(self.start_coord.row + i, self.start_coord.col))
         return self.all_coords
 
     def out_of_field(self):
         for i in range(4):
-            if self.small_rectangle[i] < 0 or self.small_rectangle[i] > 9:
+            if self.small_rectangle.small_rectangle[i] < 0 or self.small_rectangle.small_rectangle[i] > 9:
                 return False
         return True
 
