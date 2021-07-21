@@ -19,6 +19,8 @@ class OpponentFieldView:
                 opponent_field[hits_misses.row][hits_misses.col] = '.'
         for ship_coord in self.opponent_field.died_ships:
             opponent_field[ship_coord.row][ship_coord.col] = 'x'
+        for ship_coord in self.opponent_field.around_died_ships:
+            opponent_field[ship_coord.row][ship_coord.col] = '.'
         return opponent_field
 
     def print_field(self):

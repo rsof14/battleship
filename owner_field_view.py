@@ -23,6 +23,8 @@ class OwnerFieldView:
                 my_field[hits_misses.row][hits_misses.col] = '.'
         for ship_coord in self.my_field.died_ships:
             my_field[ship_coord.row][ship_coord.col] = 'x'
+        for ship_coord in self.my_field.around_died_ships:
+            my_field[ship_coord.row][ship_coord.col] = '.'
         return my_field
 
     def print_field(self):

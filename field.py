@@ -14,6 +14,7 @@ class Field:
         self.ships = []
         self.hits_misses = {}  # ? как хранить промахи, чтобы воссоздать их при печати и хранить
         self.died_ships = []
+        self.around_died_ships = []
         self.field = [[' ' for i in range(10)] for i in range(10)]  # нужно ли это поле
 
     def set_coord(self, coord: str):
@@ -47,9 +48,15 @@ class Field:
                 self.hits_misses[coord] = True
                 flag = True
             if ship.is_died():
-                for ship_coord in ship.all_coords:
+                for around_coord in ship.small_rectangle.big_rectangle_all_cd():
+                    self.around_died_ships.append(around_coord)
+                    # self.hits_misses[around_coord] = False
+                for ship_coord in ship.all_cd():
                     self.died_ships.append(ship_coord)
+
+                    self.around_died_ships.remove(ship_coord)
                     deleted = self.hits_misses.pop(ship_coord, None)
+
                     #self.died_ships.append(self.hits_misses.pop(ship_coord))
                 self.ships.remove(ship)
                 break
