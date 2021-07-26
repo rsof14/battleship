@@ -37,5 +37,5 @@ class ComputerPlayer(Player):
         opponent_field.to_hit(Point(row, col))
         already_hit.append(point)
 
-    def show_field(self, opponent_field: Field): # печать поля теперь из print
+    def show_field(self): # печать поля теперь из print
         pass

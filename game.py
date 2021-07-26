@@ -46,7 +46,7 @@ class Game:  # S: класс управляет игрой (вызов функ�
             self.view.print_second_turn()
             turn = -1
         while len(self.players[0].field.ships) != 0 and len(self.players[1].field.ships) != 0:
-            self.players[turn % 2].show_field(self.players[(turn - 1) % 2].field)
+            self.players[turn % 2].show_field()
             self.players[turn % 2].move(self.players[(turn - 1) % 2].field)
             turn += 1
             if len(self.players[turn % 2].field.ships) == 0:

@@ -26,7 +26,7 @@ class Player(ABC):
         pass
 
     @abstractmethod
-    def show_field(self, opponent_field: Field):
+    def show_field(self):
         pass
 
     """

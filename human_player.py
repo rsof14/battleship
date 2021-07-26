@@ -65,16 +65,17 @@ class HumanPLayer(Player):
         if self.auto_set():
             self.set_randomly() 
             self.show_field()
-        for ship in range(10):
-            while True:
-                added_ship = self.create_ship(ship)
-                try:
-                    self.field.add_ship(added_ship)
-                    self.show_field()
-                except ValueError:
-                    pass
-                else:
-                    break
+        else:
+            for ship in range(10):
+                while True:
+                    added_ship = self.create_ship(ship)
+                    try:
+                        self.field.add_ship(added_ship)
+                        self.show_field()
+                    except ValueError:
+                        pass
+                    else:
+                        break
 
     def create_ship(self, i: int):
         self.spv.inform_player()
@@ -96,8 +97,7 @@ class HumanPLayer(Player):
     """
     Этот метод выводит на экран поле Игрока и поле Противника в данный момент игры.
     """
-    def show_field(self, opponent_field: Field):
+    def show_field(self):
         self.view.print_owner_field()
         self.view.print_opponent_field()
-        #self.spv.view.print_field()
 
